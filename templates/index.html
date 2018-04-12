@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BobbyList</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/mdb.min.css') }}">
+    <link rel="stylesheet" href="/static/css/bobbylist.css">
+</head>
+<body style="font-family: 'HelveticaNeueThin', 'sans-serif'">
+<div class="full-bg-img flex-center dualcolorbackground">
+    <div class="animated fadeInUp centerdiv">
+        <img src="{{ url_for('static', filename = 'imgs/bobbylist_logo.png') }}">
+        <div class="col-lg-12">
+            <div class="card white hoverable"  id="signup-div" style="padding: 20px 20px 20px 20px;border-top: 5px solid #388E3C;display: none">
+                <form method="post" action="/signup" id="signup_form">
+                    <div class="md-form" style="text-align: left">
+                        <i class="fa fa-user prefix fa-3x grey-text" style="margin-top: 7px"></i>
+                        <input type="email" class="form-control" id="signup_email" name="signup_email" required>
+                        <label for="signup_email">Email</label>
+                    </div>
+                    <div class="md-form" style="text-align: left">
+                        <i class="fa fa-lock prefix fa-3x grey-text" style="margin-top: 7px"></i>
+                        <input type="password" class="form-control" id="signup_password" name="signup_password" required>
+                        <label for="signup_password">Password</label>
+                    </div>
+                    <div class="md-form" style="text-align: left">
+                        <i class="fa fa-reply prefix fa-3x grey-text" style="margin-top: 7px"></i>
+                        <input type="password" class="form-control" id="signup_retype_password" name="signup_retype_password" required>
+                        <label for="signup_retype_password">Retype Password</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="submit" class="login_btn" id="signup_btn" value="Sign Up">
+                    </div>
+                </form>
+                <label>Have an Account ? <i class="fa fa-sign-in prefix black-text" style="margin-top: 7px"></i><span class="pointer-cursor" id="login-switcher" style="color: #514A9D;cursor: pointer;"> Login </span> </label>
+            </div>
+            <div class="card white hoverable" id="login-div" style="padding: 20px 20px 20px 20px;border-top: 5px solid #388E3C">
+                <form action="{{ url_for('login') }}" method="post">
+                    <div class="md-form" style="text-align: left">
+                        <i class="fa fa-user prefix fa-3x grey-text" style="margin-top: 7px"></i>
+                        <input type="email" class="form-control" id="login_email" name="login_email">
+                        <label for="login_email">Email</label>
+                    </div>
+                    <div class="md-form" style="text-align: left">
+                        <i class="fa fa-lock prefix fa-3x grey-text" style="margin-top: 7px"></i>
+                        <input type="password" class="form-control" id="login_password" name="login_password">
+                        <label for="login_password">Password</label>
+                    </div>
+                    <div class="md-form">
+                        <input type="submit" class="login_btn" value="Login">
+                    </div>
+                </form>
+                <label>Create Account <i class="fa fa-user-plus prefix black-text" style="margin-top: 7px"></i><span class="pointer-cursor" id="signup-switcher" style="color: #514A9D;cursor: pointer;"> Signup </span> </label>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/jquery.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script>
+    $(function () {
+        $("#login-switcher").click(function () {
+            $("#signup-div").hide();
+            $("#login-div").fadeIn(500);
+        });
+        $("#signup-switcher").click(function () {
+            $("#login-div").hide();
+            $("#signup-div").fadeIn(500);
+        });
+        $('#signup_btn').click(function (e) {
+            var password = $('#signup_password').val();
+            var retype_password = $('#signup_retype_password').val();
+            if (password != retype_password){
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+</body>
+</html>

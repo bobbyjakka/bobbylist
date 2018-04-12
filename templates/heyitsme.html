@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Bobbylist Profile completion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/mdb.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bobbylist.css') }}">
+    <style rel="stylesheet">
+        .footer {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            background-color: #FFFFFF;
+            color: #514A9D;
+            font-size: small;
+            text-align: center;
+        }
+        .fileUpload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+        #uploadlab{
+            color: #514A9D;
+            opacity: 0.5;
+            margin-top: 15px;
+        }
+        #uploadbtn{
+            background: #FFFFFF;
+            border-radius: 50px;
+            border: 1px solid #24C6DC;
+            margin-top: 0px;
+        }
+        #centerdiv{
+            background: #ffffff;
+            border-radius: 10px;
+            max-width: 500px;
+        }
+        #startbtn{
+            font-size: large;
+            margin-top: -15px;
+        }
+        .live_label {
+            color: #514A9D;
+            padding: 15px;
+        }
+
+        @media screen and (max-width: 1000px) and (min-width: 200px) {
+            #centerdiv{
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="dualcolorbackground" style="font-family: 'HelveticaNeueThin', 'sans-serif'">
+<h1 class="text-center" style="color: #FFFFFF">Hey Hi, We are glad to see you</h1>
+<h3 class="text-center" style="color: #FFFFFF">Help us to fill your "It's Me Card"</h3>
+<div class="full-bg-img flex-center">
+    <div class="animated fadeInUp col-lg-4" id="centerdiv" style="background: #FFFFFF;padding: 30px 20px 50px 20px;border-radius: 10px">
+        <div class="col-lg-12" style="width:100%;display:flex;padding-bottom: 20px">
+            <div id="backbtndiv" style="width: 20%;cursor: pointer;visibility: hidden">
+                <i id="backbtn" class="fa fa-2x fa-arrow-left" style="color: #514A9D; cursor: pointer"></i>
+            </div>
+            <div style="width: 80%;text-align: center">
+
+            </div>
+        </div>
+        <div class="col-lg-12">
+        <form action="/user_creation" method="post" enctype=multipart/form-data>
+            <input type="hidden" name="emailinput" value="{{ user_email }}">
+            <div id="firstnamediv" style="text-align: center;color: #514A9D">
+                <h4 id="firstnameh5">Whats your First Name ?</h4>
+                <input id="firstnameinput" name="firstnameinput" ng-model="firstname_live" type="text" style="width: 60%;font-size:large;border-color: #24C6DC;text-align: center;color: #514A9D" autofocus>
+            </div>
+            <div id="lastnamediv" style="text-align: center;color: #514A9D;display: none">
+                <h4 id="lastnameh5"></h4>
+                <input id="lastnameinput" name="lastnameinput" type="text" ng-model="lastname_live" style="width: 60%;font-size:large;border-color: #24C6DC;text-align: center;padding: 0px 0px 7px 0px;color: #514A9D">
+            </div>
+            <div id="usernamediv"  style="text-align:center;color: #514A9D;display: none">
+                <h4 id="usernameh5"></h4>
+                <input id="usernameinput" name="usernameinput" ng-model="username_live" type="text" style="width: 60%;font-size:large;border-color: #24C6DC;text-align: center;padding: 0px 0px 7px 0px;color: #514A9D">
+                <br><label id="erroremail" style="font-size: x-small;color: red"> </label>
+            </div>
+            <div id="submitbtndiv" style="text-align:center;display: none">
+                <label class="col-lg-12" id="uploadlab">&nbsp;</label>
+                <div class="md-form"  style="text-align: center">
+                    <div class="fileUpload btn" id="uploadbtn">
+                        <span style="color: #514A9D">Upload image*</span>
+                        <input type="file" id="uploadfile" accept=".jpg" name="uploadfile" class="upload" required/>
+                    </div>
+                </div>
+                <Button type="submit" id="startbtn" class="btn dualcolorbackground" style="border-radius: 5px">Go To Dashboard</Button>
+            </div>
+        </form>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+    <div class="animated fadeInUp col-lg-4" id="centerdiv" style="background: #FFFFFF;padding: 30px 20px 50px 20px;border-radius: 10px">
+        <div class="col-lg-12 text-center">
+            <h1><img src="{{ url_for('static', filename='imgs/bobbylist_user.png') }}" id="tempimg" class="dualcolorbackground img-circle" width="100px" height="100px"></h1>
+        </div>
+        <div class="col-lg-12 text-center">
+            <div class="md-form">
+                <h4 class="live_label" id="email_live">Email : {{ user_email }}</h4>
+                <h4 class="live_label" id="firstname_live">First Name : {{ firstname_live | angular }}</h4>
+                <h4 class="live_label" id="lastname_live">Last Name : {{ lastname_live | angular }}</h4>
+                <h4 class="live_label" id="username_live">Username : {{ username_live | angular }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/angular.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
+<script>
+    $(function () {
+        var index = 1;
+        String.prototype.capitalize = function(){
+            return this.toLowerCase().replace( /\b\w/g, function (m) {
+                return m.toUpperCase();
+            });
+        };
+        $('#firstnameinput').keypress(function (e) {
+            if(e.which===13 && $('#firstnameinput').val().trim().length > 0){
+                index = 2;
+                $('#firstnamediv').hide();
+                $('#lastnameh5').text("Hi "+$('#firstnameinput').val().capitalize()+"! What's your Last Name?");
+                $('#lastnamediv').show();
+                $('#lastnameinput').focus();
+                $('#backbtndiv').css({"visibility": "visible"});
+                return false;
+            }
+        });
+        $('#lastnameinput').keypress(function (e) {
+            if(e.which===13 && $('#lastnameinput').val().trim().length > 0){
+                index = 3;
+                $('#lastnamediv').hide();
+                $('#usernameh5').text($('#firstnameinput').val().capitalize()+"! Create Your Username")
+                $('#usernamediv').show();
+                $('#usernameinput').focus();
+                return false;
+            }
+        });
+        $('#usernameinput').keypress(function (e) {
+            var username = $('#usernameinput').val().trim();
+            if(e.which===13 && (username.length>0)){
+                if(String(username).length < 16){
+                        index = 4;
+                        $('#usernamediv').hide();
+                        $('#submitbtndiv').show();
+                    $('#erroremail').text("   ");
+                }else{
+                    $('#erroremail').text("Only 15 characters allowed");
+                }
+                return false;
+            }
+            if(e.which === 32){
+                return false;
+            }
+        });
+        $('#uploadfile').change(function (e) {
+            $('#uploadlab').text(e.target.files[0].name);
+            $('#tempimg').attr('src', URL.createObjectURL(e.target.files[0]));
+        });
+        $('#backbtn').click(function (e) {
+            if(index==2){
+                $('#lastnamediv').hide();
+                $('#firstnamediv').show();
+                $('#firstnameinput').focus();
+                $('#backbtndiv').css({"visibility": "hidden"});
+                index = 1;
+            }else if(index == 3){
+                $('#usernamediv').hide();
+                $('#lastnameh5').text("Hi "+$('#firstnameinput').val().capitalize()+"! What's your Last Name?");
+                $('#lastnamediv').show();
+                $('#lastnameinput').focus();
+                index = 2;
+            }else if(index == 4){
+                $('#submitbtndiv').hide();
+                $('#usernameh5').text($('#firstnameinput').val().capitalize()+"! Create your Username");
+                $('#usernamediv').show();
+                $('#usernameinput').focus();
+                index = 3;
+            }
+        });
+    });
+</script>
+</html>
