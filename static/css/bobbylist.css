@@ -1,0 +1,69 @@
+@font-face {
+    font-family: HelveticaNeueThin;
+    src: url('../fonts/HelveticaNeueThin/HelveticaNeue-Thin.otf');
+}
+@font-face {
+    font-family: HelveticaNeueUltraThin;
+    src: url('../fonts/HelveticaNeueUltraThin/HelveticaNeue-UltraLight.otf');
+}
+.dualcolorbackground {
+    background-color: #24C6DC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #24C6DC , #514A9D); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #24C6DC , #514A9D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.relative_position {
+    position: relative;
+}
+.centerdiv {
+    text-align: center;
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.homediv {
+    text-align: center;
+    width: 90%;
+    background: white;
+    height: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.login_btn {
+    border-radius: 50px;
+    font-weight: bold;
+    padding: 5px 20px 5px 20px;
+    font-size: medium;
+    color: #514A9D;
+    border: 2px solid #514A9D;
+    background: #FFFFFF;
+}
+
+.login_btn:hover {
+    background: #514A9D;
+    color: #FFFFFF;
+}
+
+.pointer-cursor{
+    cursor: pointer;
+}
+
+input[type=text]:focus:not([readonly]) + label {
+    color: #514A9D;
+}
+input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #514A9D;
+    box-shadow: 0 1px 0 0 #514A9D;
+}
+input[type=password]:focus:not([readonly]) + label {
+    color: #514A9D;
+}
+input[type=password]:focus:not([readonly]) {
+    border-bottom: 1px solid #514A9D;
+    box-shadow: 0 1px 0 0 #514A9D;
+}
+
