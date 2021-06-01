@@ -45,7 +45,7 @@ six==1.11.0
 subprocess32==3.2.7
 texttable==0.9.1
 unity-lens-photos==1.0
-urllib3==1.22
+urllib3==1.26.5
 vboxapi==1.0
 webencodings==0.5.1
 websocket-client==0.44.0
